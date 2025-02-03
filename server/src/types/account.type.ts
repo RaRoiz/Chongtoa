@@ -2,24 +2,24 @@ import Elysia, { Static, t } from "elysia"
 import { _register } from "./register.type"
 import { _login } from "./login.type"
 
-export const _profile = t.Object({
-    ...t.Omit(_register, ['password']).properties,
-    id: t.String(),
-    created_at: t.Optional(t.Date()),
-    updated_at: t.Optional(t.Date()),
-    age: t.Optional(t.String()),
-})
+// export const _profile = t.Object({
+//     ...t.Omit(_register, ['password']).properties,
+//     id: t.String(),
+//     created_at: t.Optional(t.Date()),
+//     updated_at: t.Optional(t.Date()),
+//     age: t.Optional(t.String()),
+// })
 
 //todo: imprement upload feature
 
-export const _user = t.Object({
-    ..._profile.properties,
+// export const _user = t.Object({
+//     ..._profile.properties,
 
-})
+// })
 
 export const _account = t.Object({
     token: t.String(),
-    user: _user,
+    // user: _user,
 })
 
 export const AccountDto = new Elysia().model({
@@ -40,6 +40,6 @@ export const _restaurantReview = t.Object({
     updated_at: t.Optional(t.Date()),
 })
 
-export type user = Static<typeof _user> //user without token
+// export type user = Static<typeof _user> //user without token
 export type register = Static<typeof _register>
 export type login = Static<typeof _login>
