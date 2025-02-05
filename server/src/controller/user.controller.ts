@@ -8,11 +8,9 @@ export const UserController = new Elysia({
     .use(AuthMiddleWare)
     .get('/all', () => {
         return {
-            username: "",
-            password: "",
-            display_name: "",
-            date_of_birth: "",
-            phone: "",
-            email: ""
+            user: [
+                {id:'1', name: 'Kai'},
+                {id:'2', name: 'mairu'},
+            ]
         }
     })
