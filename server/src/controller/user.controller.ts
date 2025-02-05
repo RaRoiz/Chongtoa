@@ -8,11 +8,11 @@ export const UserController = new Elysia({
     .use(AuthMiddleWare)
     .get('/all', () => {
         return {
-            username: "muhaha",
-            password: "P@ssw0rd",
-            display_name: "Kai",
-            date_of_birth: "1990-01-01",
-            phone: "1234567890",
-            email: "your_email@example.com"
+            username: "",
+            password: "",
+            display_name: "",
+            date_of_birth: "",
+            phone: "",
+            email: ""
         }
     })
