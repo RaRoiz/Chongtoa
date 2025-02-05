@@ -8,13 +8,7 @@ export const _account = t.Object({
     user: _user
 })
 
-export const _profile = t.Object({
-    ...t.Omit(_register, ['password']).properties,
-    id: t.String(),
-    created_at: t.Optional(t.Date()),
-    updated_at: t.Optional(t.Date()),
-    age: t.Optional(t.String()),
-})
+
 
 export const AccountDto = new Elysia().model({
     register: _register,

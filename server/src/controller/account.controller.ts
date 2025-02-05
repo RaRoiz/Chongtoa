@@ -16,12 +16,12 @@ export const AccountController = new Elysia({
             const token = await jwt.sign({ id: user.id })
             return { token, user }
         } catch (error) {
-            set.status = "Bad Request"
             if (error instanceof Error) {
+                set.status = 400
                 throw new Error(error.message)
             }
-            set.status = "Internal Server Error"
-            throw new Error('som')
+            set.status = 500
+            throw new Error('Internal server error')
         }
     }, {
         detail: { summary: 'Login', description: 'Login to the system' },
@@ -35,11 +35,12 @@ export const AccountController = new Elysia({
             const token = await jwt.sign({ id: user.id })
             return { token, user }
         } catch (error) {
-            set.status = 400
-            if (error instanceof Error)
+            if (error instanceof Error) {
+                set.status = 400
                 throw new Error(error.message)
+            }
             set.status = 500
-            throw new Error('Something went wrong, try agian later')
+            throw new Error('Internal server error')
         }
     }, {
         body: "register",
@@ -51,7 +52,7 @@ export const AccountController = new Elysia({
             const usernameRegex = /^[A-Za-z][A-Za-z\d]{3,9}$/
             const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,16}$/
             if (!usernameRegex.test(username) || !passwordRegex.test(password)) {
-                set.status = "Bad Request"
+                set.status = 400
                 throw new Error(`Invalid username or password`)
             }
         },
