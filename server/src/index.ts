@@ -3,17 +3,19 @@ import { ExampleController } from "./controller/example.controller"
 import { SwaggerConfig } from "./config/swagger.config"
 import { tlsConfig } from "./config/tls.config"
 import cors from "@elysiajs/cors"
-import express from 'express'
 import { Database } from "./config/database.config"
-import dotenv from 'dotenv'
+import { UserController } from "./controller/user.controller"
+import { AccountController } from "./controller/account.controller"
 
 Database.connect()
-dotenv.config()
 
 const app = new Elysia()
   .use(cors())
   .use(ExampleController)
   .use(SwaggerConfig)
+  .use(UserController)
+  .use(AccountController)
+
   .listen({
     port: Bun.env.PORT || 8080,
     tls: tlsConfig

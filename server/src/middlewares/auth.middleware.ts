@@ -1,6 +1,7 @@
 import { JWTPayloadSpec } from "@elysiajs/jwt"
 import Elysia from "elysia"
 import { jwtConfig } from "../config/jwt.config"
+import { AccountDto } from "../types/account.type"
 type AuthContext = {
     Auth: {
         payload: false | (Record<string, string | number> & JWTPayloadSpec)

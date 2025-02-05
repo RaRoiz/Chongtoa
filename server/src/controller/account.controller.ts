@@ -3,33 +3,32 @@ import { jwtConfig } from "../config/jwt.config"
 import { AccountDto } from "../types/account.type"
 import { AccountService } from "../services/account.service"
 
-export const AccountComtroller = new Elysia({
+export const AccountController = new Elysia({
     prefix: '/api/account',
     tags: ['Account']
 })
     .use(jwtConfig)
     .use(AccountDto)
 
-
     .post('/login', async ({ body, jwt, set }) => {
         try {
             const user = await AccountService.login(body)
             const token = await jwt.sign({ id: user.id })
-            return { user, token }
+            return { token, user }
         } catch (error) {
             set.status = "Bad Request"
-            if (error instanceof Error)
+            if (error instanceof Error) {
                 throw new Error(error.message)
+            }
             set.status = "Internal Server Error"
-            throw new Error("Something is Wrong, Try again")
+            throw new Error('som')
         }
     }, {
-        detail: { summary: "Login to your account" },
-        body: "login",
-        // response: "user_and_token",
-    }
+        detail: { summary: 'Login', description: 'Login to the system' },
+        body: 'login',
+        response: 'account'
+    })
 
-    )
     .post('/register', async ({ body, jwt, set }) => {
         try {
             const user = await AccountService.createNewUser(body)
@@ -44,16 +43,16 @@ export const AccountComtroller = new Elysia({
         }
     }, {
         body: "register",
-        // response: "user_and_token",
+        response: "account",
         detail: {
-            summary: "Create New user"
+            summary: "Create new user 🤓"
         },
-        //     beforeHandle: ({ body: { username, password }, set }) => {
-        //         const usernameRegex = /^[A-Za-z][A-Za-z\d]{3,9}$/
-        //         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,16}$/
-        //         if (!usernameRegex.test(username) || !passwordRegex.test(password)) {
-        //             set.status = "Bad Request"
-        //             throw new Error('Invalid username or password')
-        //         }
-        //     },
+        beforeHandle: ({ body: { username, password }, set }) => {
+            const usernameRegex = /^[A-Za-z][A-Za-z\d]{3,9}$/
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,16}$/
+            if (!usernameRegex.test(username) || !passwordRegex.test(password)) {
+                set.status = "Bad Request"
+                throw new Error(`Invalid username or password`)
+            }
+        },
     })
