@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
 import { restaurantReview } from "../types/review.type";
 
 class ReviewService {
@@ -16,7 +15,7 @@ class ReviewService {
 
   //  เพิ่มรีวิวใหม่
   createReview(data: Omit<restaurantReview, "id" | "created_at" | "updated_at">): restaurantReview {
-    const id = uuidv4();
+    const id = Date.now().toString();
     const newReview: restaurantReview = {
       id,
       ...data,
