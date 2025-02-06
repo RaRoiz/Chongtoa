@@ -3,6 +3,16 @@ import { _register } from "./register.type"
 import { _login } from "./login.type"
 import { _user } from "./user.type"
 
+
+
+export const _updateProfile = t.Object({
+    display_name: t.String(),
+    phone: t.String(),
+    email: t.String()
+})
+
+
+
 export const _account = t.Object({
     token: t.String(),
     user: _user
@@ -13,7 +23,8 @@ export const _account = t.Object({
 export const AccountDto = new Elysia().model({
     register: _register,
     login: _login,
-    account: _account
+    account: _account,
+    update_profile: _updateProfile
 })
 
 
