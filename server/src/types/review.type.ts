@@ -1,4 +1,4 @@
-import { t } from "elysia"
+import { Static, t } from "elysia"
 
 export const _restaurantReview = t.Object({
     id: t.String(),
@@ -8,3 +8,5 @@ export const _restaurantReview = t.Object({
     created_at: t.Optional(t.Date()),
     updated_at: t.Optional(t.Date()),
 })
+
+export type restaurantReview = Static<typeof _restaurantReview>
