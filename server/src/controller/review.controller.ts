@@ -14,6 +14,7 @@ export const reviewsController = new Elysia({
         return review ? review : { error: "Review not found" }
     })
 
+  .get("/", () => reviewService.getAllReviews()) // ดึงรีวิวทั้งหมด
 
     .post("/", ({ body }) => {
         const id = new UUID().toString()
@@ -28,6 +29,14 @@ export const reviewsController = new Elysia({
         return { message: "Review added", review: newReview }
     }, { body: _restaurantReview })
 
+  .post(
+    "/",
+    ({ body }) => {     // เพิ่มรีวิวใหม่
+      const newReview = reviewService.createReview(body);
+      return { message: "Review added", review: newReview };
+    },
+    { body: _restaurantReview }
+  )
 
     .put("/:id", ({ params, body }) => {
         if (!reviews[params.id]) return { error: "Review not found" }
