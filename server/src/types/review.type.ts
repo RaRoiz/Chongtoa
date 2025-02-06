@@ -1,4 +1,4 @@
-import { Static , t} from "elysia"
+import { Static, t } from "elysia"
 
 export const _restaurantReview = t.Object({
     id: t.String(),
