@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
+import { calculateAge } from "../helper/date.helper"
 import { IUserDocument, IUserModel } from "../interface/user.interface"
 import { register } from "../types/account.type"
-import { calculateAge } from "../helper/date.helper"
 import { user } from "../types/user.type"
 
 const schema = new mongoose.Schema<IUserDocument, IUserModel>({

@@ -1,6 +1,5 @@
 import { User } from "../model/user.model"
-import { user } from "../types/account.type"
-import { updateProfile } from "../types/user.type"
+import { updateProfile, user } from "../types/user.type"
 
 export const UserService = {
 
