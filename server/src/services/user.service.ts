@@ -16,6 +16,7 @@ export const UserService = {
         const user = await User.findByIdAndUpdate(user_id, { $set: newProfile }, { new: true, runValidators: true })
         if (user)
             return user.toUser()
-        throw new Error('Something went wrong,try agian later !!')
-    }
+        throw new Error('Something went wrong, try again later !!')
+    },
+
 }

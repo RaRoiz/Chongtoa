@@ -6,6 +6,7 @@ import cors from "@elysiajs/cors"
 import { Database } from "./config/database.config"
 import { UserController } from "./controller/user.controller"
 import { AccountController } from "./controller/account.controller"
+import { ReviewsController } from "./controller/reviwe.controller"
 
 
 Database.connect()
@@ -16,6 +17,7 @@ const app = new Elysia()
   .use(SwaggerConfig)
   .use(UserController)
   .use(AccountController)
+  .use(ReviewsController)
 
   .listen({
     port: Bun.env.PORT || 8080,
