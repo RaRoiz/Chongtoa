@@ -5,7 +5,7 @@ export const _restaurantReview = t.Object({
     userId: t.String(),
     restaurantId: t.String(),
     rating: t.Number({ minimum: 0, maximum: 5 }),
-    review: t.String({ minLength: 1 }),
+    review: t.String({ minLength: 1, maxLength: 100 }),
     visit_date: t.Date(),
     created_at: t.Date(),
     updated_at: t.Date()
@@ -14,15 +14,15 @@ export const _restaurantReview = t.Object({
 export const _createReview = t.Object({
     restaurantId: t.String(),
     rating: t.Number({ minimum: 0, maximum: 5 }),
-    review: t.String({ minLength: 1 }),
-    visit_date: t.String(),
+    review: t.String({ minLength: 1, maxLength: 100 }),
+    visit_date: t.Date(),
     token: t.String() // Add token field to ensure login
 })
 
 export const _updateReview = t.Object({
     rating: t.Optional(t.Number({ minimum: 0, maximum: 5 })),
-    review: t.Optional(t.String({ minLength: 1 })),
-    visit_date: t.Optional(t.String()),
+    review: t.Optional(t.String({ minLength: 1, maxLength: 100 })),
+    visit_date: t.Date()
 })
 
 export const reviewDto = new Elysia().model({

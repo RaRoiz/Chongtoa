@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
+    "@types/validator": "^13.12.2",
     "bun-types": "latest"
   },
   "module": "src/index.js"
