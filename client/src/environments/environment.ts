@@ -1,3 +1,4 @@
 export const environment = {
-    baseURL:'/'
+    baseURL:'/',
+    production: false
 };

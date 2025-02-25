@@ -327,6 +327,15 @@
         </a>
       </div>
     </div>
+    <mat-toolbar color="primary">
+      <button mat-button routerLink="/">Home</button>
+      <button mat-button routerLink="/about">About</button>
+      <button mat-button routerLink="/contact">Contact</button>
+      <button mat-button (click)="changeTheme()">Theme</button>
+    </mat-toolbar>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </main>
 
